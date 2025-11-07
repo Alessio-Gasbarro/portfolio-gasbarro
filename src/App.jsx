@@ -14,7 +14,7 @@ function App() {
       />
 
       <div className="overlay">
-        {/* HERO - prima schermata centrata */}
+        {/* HERO - Prima Sezione */}
         <section className="section hero" role="region" aria-labelledby="hero-title">
           <div className="hero-content">
             <h1 id="hero-title" className="hero-title">Costruendo nuove realtà</h1>
@@ -32,10 +32,10 @@ function App() {
           </div>
         </section>
 
-        {/* SKILLS - seconda schermata centrata */}
-        <section id="skills" className="section skills-section" aria-labelledby="skills-title" role="region">
+        {/* SKILLS - Seconda Sezione */}
+        <section className="section" aria-labelledby="skills-title" role="region">
           <div className="skills-inner">
-            <h2 id="skills-title" className="skills-heading">Competenze</h2>
+            <h2 className="skills-heading">Competenze</h2>
 
             <div className="skills-grid" role="list">
               <div className="skills-column" role="listitem" aria-label="Front-end">
@@ -71,6 +71,11 @@ function App() {
               </div>
             </div>
           </div>
+        </section>
+
+        {/* PROGETTI - Terza Sezione */}
+        <section className='section'>
+          <h1>Ciao</h1>
         </section>
       </div>
     </div>
