@@ -1,0 +1,231 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+.app {
+  position: relative;
+  min-height: 100vh;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  color: #fff;
+  background: transparent;
+}
+
+.bg-video {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+  pointer-events: none;
+  display: block;
+}
+
+.app::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.25);
+  z-index: 1;
+  pointer-events: none;
+}
+
+.overlay {
+  position: relative;
+  z-index: 2;
+  height: 100vh;
+  overflow-y: auto;
+  scroll-snap-type: y mandatory;
+  -webkit-overflow-scrolling: touch;
+  display: block;
+}
+
+.section {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  scroll-snap-align: center;
+  padding: 5vh 1.5rem;
+  box-sizing: border-box;
+}
+
+.hero {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1.25rem;
+  text-align: center;
+  min-height: 60vh;
+}
+
+.hero-content {
+  max-width: 1100px;
+  width: 100%;
+  text-align: center;
+}
+
+.hero-title {
+  font-weight: 700;
+  line-height: 1.02;
+  font-size: clamp(2.25rem, 6vw, 5rem);
+  letter-spacing: -0.02em;
+  margin-bottom: 0.25rem;
+}
+
+.hero-desc {
+  max-width: 70ch;
+  color: rgba(255, 255, 255, 0.92);
+  font-size: clamp(1rem, 2.2vw, 1.125rem);
+  margin: 0 auto;
+  opacity: 0.95;
+}
+
+.btn-group {
+  display: inline-flex;
+  gap: 0.75rem;
+  margin-top: 0.5rem;
+  align-items: center;
+}
+
+.btn {
+  display: inline-block;
+  text-decoration: none;
+  padding: 0.65rem 1.1rem;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.12);
+  color: #fff;
+  font-weight: 600;
+  transition: background 180ms ease, transform 120ms ease, box-shadow 160ms ease;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.35);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.btn-primary {
+  background: linear-gradient(90deg, #00aaff 0%, #0066ff 100%);
+  color: #fff;
+  border: none;
+  box-shadow: 0 8px 30px rgba(0, 102, 255, 0.25);
+}
+
+.btn:hover {
+  transform: translateY(-3px);
+  background: rgba(255, 255, 255, 0.18);
+}
+
+.btn:focus {
+  outline: 3px solid rgba(0, 170, 255, 0.18);
+  outline-offset: 3px;
+}
+
+@media (max-width: 520px) {
+  .btn-group {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .btn {
+    width: 100%;
+    text-align: center;
+  }
+}
+
+.skills-section {
+  margin-top: 0;
+  padding: 3rem 1.5rem 6rem;
+  width: 100%;
+  color: #fff;
+  display: block;
+}
+
+.skills-inner {
+  width: 100%;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.skills-heading {
+  font-size: clamp(1.5rem, 3.5vw, 2rem);
+  text-align: center;
+  margin-bottom: 1.25rem;
+  font-weight: 700;
+}
+
+.skills-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  justify-content: center;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.skills-column {
+  width: 100%;
+  max-width: 950px;
+  text-align: center;
+  padding: 0.75rem 1rem;
+}
+
+.skills-subheading {
+  font-size: 1rem;
+  font-weight: 700;
+  margin-bottom: 0.75rem;
+  letter-spacing: 0.02em;
+  color: rgba(255, 255, 255, 0.95);
+}
+
+.skill-row {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  padding: 0.25rem 0.25rem;
+}
+
+.skill-row::-webkit-scrollbar {
+  height: 8px;
+}
+
+.skill-row::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 8px;
+}
+
+.skill-icon {
+  width: 80px;
+  height: 80px;
+  object-fit: contain;
+  filter: drop-shadow(0 6px 14px rgba(0, 0, 0, 0.45));
+  background: rgba(255, 255, 255, 0.02);
+  padding: 6px;
+  border-radius: 8px;
+}
+
+@media (max-width: 768px) {
+  .app {
+    background: linear-gradient(180deg, #111 0%, #0b0b0b 100%);
+  }
+
+  .skills-section {
+    padding-bottom: 4rem;
+  }
+
+  .skills-grid {
+    gap: 1.5rem;
+    align-items: center;
+  }
+}
