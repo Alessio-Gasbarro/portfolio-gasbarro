@@ -2,6 +2,14 @@ import './index.css'
 import bgVideo from './assets/background_video.mp4'
 
 function App() {
+  const projects = [
+    { id: 1, title: 'VideoGames E-Commerce', desc: 'E-Commerce videoludica, lavoro di gruppo. Sistema gestionale di videogames, da aggiungere al carrello e tantissimo altro.', href: 'https://github.com/Alessio-Gasbarro/ecommerce_boolstop' },
+    { id: 2, title: 'Javascript Clock', desc: 'Orologio in tempo reale, con il design di una variabile JavaScript.', href: 'https://github.com/Alessio-Gasbarro/realTimeClock_react' },
+    { id: 3, title: 'Nasa API', desc: 'Applicazione che utilizza le API della NASA, mostra immagini giornaliere e informazioni di pianeti, asteroidi e altro.', href: 'https://github.com/Alessio-Gasbarro/nasa_api' },
+    { id: 4, title: 'Pluvia24', desc: 'Piattaforma meteo in tempo reale che utilizza le API di OpenWeather. Mostra le condizioni meteorologiche attuali di ben 20 Capitali.', href: 'https://github.com/Alessio-Gasbarro/weather-api' },
+    { id: 5, title: 'Musicando', desc: 'Applicazione per comparare strumenti e/o aggiungere strumenti ai preferiti. Ottimizzato con ricerca avanzata, debounce e LocalStorage.', href: 'https://github.com/Alessio-Gasbarro/progetto-finale-spec-frontend-front' }
+  ]
+
   return (
     <div className="app">
       <video
@@ -16,7 +24,7 @@ function App() {
       <div className="overlay">
         {/* HERO - Prima Sezione */}
         <section className="section hero" role="region" aria-labelledby="hero-title">
-          <div className="hero-content">
+          <div className="section-inner hero-content">
             <h1 id="hero-title" className="hero-title">Costruendo nuove realtà</h1>
 
             <p className="hero-desc">
@@ -34,8 +42,8 @@ function App() {
 
         {/* SKILLS - Seconda Sezione */}
         <section className="section" aria-labelledby="skills-title" role="region">
-          <div className="skills-inner">
-            <h2 className="skills-heading">Competenze</h2>
+          <div className="section-inner skills-inner">
+            <h2 id="skills-title" className="skills-heading">Competenze</h2>
 
             <div className="skills-grid" role="list">
               <div className="skills-column" role="listitem" aria-label="Front-end">
@@ -74,8 +82,30 @@ function App() {
         </section>
 
         {/* PROGETTI - Terza Sezione */}
-        <section className='section'>
-          <h1>Ciao</h1>
+        <section id="projects" className="section projects-section" aria-labelledby="projects-title" role="region">
+          <div className="section-inner">
+            <h2 id="projects-title" className="skills-heading">Progetti</h2>
+
+            <div className="projects-grid" role="list">
+              {projects.map(p => (
+                <a
+                  key={p.id}
+                  className="project-card"
+                  href={p.href}
+                  aria-label={p.title}
+                >
+                  <div className="project-thumb">
+                    {/* Sostituisci con <img src={require('./assets/project1.jpg')} alt="..." /> oppure importa in cima */}
+                    <span className="project-placeholder">Immagine</span>
+                  </div>
+                  <div className="project-meta">
+                    <h3 className="project-title">{p.title}</h3>
+                    <p className="project-desc">{p.desc}</p>
+                  </div>
+                </a>
+              ))}
+            </div>
+          </div>
         </section>
       </div>
     </div>
