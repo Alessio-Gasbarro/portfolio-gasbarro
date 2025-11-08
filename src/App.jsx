@@ -1,15 +1,8 @@
-import './index.css'
-import bgVideo from './assets/background_video.mp4'
+import './index.css';
+import bgVideo from './assets/background_video.mp4';
+import { projects } from './data/projects.js';
 
 function App() {
-  const projects = [
-    { id: 1, title: 'VideoGames E-Commerce', desc: 'E-Commerce videoludica, lavoro di gruppo. Sistema gestionale di videogames, da aggiungere al carrello e tantissimo altro.', href: 'https://github.com/Alessio-Gasbarro/ecommerce_boolstop' },
-    { id: 2, title: 'Javascript Clock', desc: 'Orologio in tempo reale, con il design di una variabile JavaScript.', href: 'https://github.com/Alessio-Gasbarro/realTimeClock_react' },
-    { id: 3, title: 'Nasa API', desc: 'Applicazione che utilizza le API della NASA, mostra immagini giornaliere e informazioni di pianeti, asteroidi e altro.', href: 'https://github.com/Alessio-Gasbarro/nasa_api' },
-    { id: 4, title: 'Pluvia24', desc: 'Piattaforma meteo in tempo reale che utilizza le API di OpenWeather. Mostra le condizioni meteorologiche attuali di ben 20 Capitali.', href: 'https://github.com/Alessio-Gasbarro/weather-api' },
-    { id: 5, title: 'Musicando', desc: 'Applicazione per comparare strumenti e/o aggiungere strumenti ai preferiti. Ottimizzato con ricerca avanzata, debounce e LocalStorage.', href: 'https://github.com/Alessio-Gasbarro/progetto-finale-spec-frontend-front' }
-  ]
-
   return (
     <div className="app">
       <video
@@ -96,7 +89,8 @@ function App() {
                 >
                   <div className="project-thumb">
                     {/* Sostituisci con <img src={require('./assets/project1.jpg')} alt="..." /> oppure importa in cima */}
-                    <span className="project-placeholder">Immagine</span>
+                    {/*<span className="project-placeholder">Immagine</span>*/}
+                    <img src={p.image} alt={p.title} />
                   </div>
                   <div className="project-meta">
                     <h3 className="project-title">{p.title}</h3>
