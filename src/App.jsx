@@ -1,8 +1,40 @@
 import './index.css';
 import bgVideo from './assets/background_video.mp4';
+import curriculum from './assets/curriculum_1.png';
+import master from './assets/master_2.png';
 import { projects } from './data/projects.js';
+import { useState, useCallback, useEffect } from 'react';
 
 function App() {
+  const [lightbox, setLightbox] = useState({ open: false, src: '', alt: '' });
+
+  const openLightbox = useCallback((src, alt) => {
+    setLightbox({ open: true, src, alt });
+  }, []);
+
+  const closeLightbox = useCallback(() => {
+    setLightbox({ open: false, src: '', alt: '' });
+  }, []);
+
+  useEffect(() => {
+    function onKey(e) {
+      if (e.key === 'Escape' && lightbox.open) closeLightbox();
+    }
+    window.addEventListener('keydown', onKey);
+    return () => window.removeEventListener('keydown', onKey);
+  }, [lightbox.open, closeLightbox]);
+
+  // Animated headline phrases
+  const phrases = ['nuove realtà', 'nuove idee', 'nuovi progetti', 'nuovi sogni'];
+  const [idx, setIdx] = useState(0);
+
+  useEffect(() => {
+    const t = setInterval(() => {
+      setIdx((i) => (i + 1) % phrases.length);
+    }, 3000);
+    return () => clearInterval(t);
+  }, []);
+
   return (
     <div className="app">
       <video
@@ -16,25 +48,41 @@ function App() {
 
       <div className="overlay">
         {/* HERO - Prima Sezione */}
-        <section className="section hero" role="region" aria-labelledby="hero-title">
+        <section className="section" role="region" aria-labelledby="hero-title">
           <div className="section-inner hero-content">
-            <h1 id="hero-title" className="hero-title">Costruendo nuove realtà</h1>
+            <h1 id="hero-title" className="hero-title">
+              <span className="fixed-word">Costruendo</span>
+              <span className="animated-wrap" aria-hidden="false">
+                <span
+                  key={idx}
+                  className={`animated-phrase phrase-${idx}`}
+                >
+                  {phrases[idx]}
+                </span>
+              </span>
+            </h1>
 
-            <p className="hero-desc">
-              Sono un Full-Stack Developer specializzato in Front-End. Il mio focus va
-              all'ottimizzazione e alle funzionalità del sito, mantenendo un design
-              moderno ma performante.
-            </p>
+            <div className="blur">
+              <p className="hero-desc">
+                Sono un ragazzo appassionato di 28 anni che risiede a Ludwigsburg, in Germania, con un fortissimo desiderio di conoscere nuove tecnologie e imparare sempre di più. Ho recentemente completato un corso intensivo di 6 mesi come Full-Stack Web Developer, dove ho acquisito le necessarie competenze per creare applicazioni web moderne ed efficienti sia in Front-end, sia in Back-end.
+              </p>
+              <p className='hero-desc'>
+                Italiano di madrelingua, sono fluente in inglese e tedesco a livello Niveau C1. Ma nel tempo libero mi piace spesso imparare il giapponese.
+              </p>
+              <p className='hero-desc'>
+                Essere curioso, appassionato e determinato fa di me la persona che sono oggi, oltre alla mia personale soddisfazione nel completare con successo ogni progetto.
+              </p>
+            </div>
 
             <div className="btn-group" role="navigation" aria-label="Azioni principali">
-              <a className="btn btn-primary" href="#projects">Progetti</a>
-              <a className="btn" href="#contact">Contattami</a>
+              <a className="btn" href="#projects">Progetti</a>
+              <a className="btn" href="#skills">Competenze</a>
             </div>
           </div>
         </section>
 
         {/* SKILLS - Seconda Sezione */}
-        <section className="section" aria-labelledby="skills-title" role="region">
+        <section id="skills" className="section" aria-labelledby="skills-title" role="region">
           <div className="section-inner skills-inner">
             <h2 id="skills-title" className="skills-heading">Competenze</h2>
 
@@ -88,8 +136,6 @@ function App() {
                   aria-label={p.title}
                 >
                   <div className="project-thumb">
-                    {/* Sostituisci con <img src={require('./assets/project1.jpg')} alt="..." /> oppure importa in cima */}
-                    {/*<span className="project-placeholder">Immagine</span>*/}
                     <img src={p.image} alt={p.title} />
                   </div>
                   <div className="project-meta">
@@ -101,9 +147,51 @@ function App() {
             </div>
           </div>
         </section>
+
+        {/* REFERENZE - Quarta Sezione */}
+        <section id="references" className="section" aria-labelledby="references-title" role="region">
+          <div className="section-inner">
+            <h2 id="references-title" className="skills-heading">Referenze</h2>
+
+            <div className="ref-grid">
+              <button
+                type="button"
+                className="ref-card"
+                onClick={() => openLightbox(curriculum, 'Curriculum')}
+                aria-label="Apri Curriculum"
+              >
+                <img src={curriculum} alt="Curriculum" />
+              </button>
+
+              <button
+                type="button"
+                className="ref-card"
+                onClick={() => openLightbox(master, 'Master')}
+                aria-label="Apri Master"
+              >
+                <img src={master} alt="Master" />
+              </button>
+            </div>
+          </div>
+        </section>
       </div>
+
+      {lightbox.open && (
+        <div
+          className="lightbox"
+          role="dialog"
+          aria-modal="true"
+          aria-label={lightbox.alt}
+          onClick={closeLightbox}
+        >
+          <div className="lightbox-inner" onClick={(e) => e.stopPropagation()}>
+            <button className="lightbox-close" onClick={closeLightbox} aria-label="Chiudi">×</button>
+            <img src={lightbox.src} alt={lightbox.alt} />
+          </div>
+        </div>
+      )}
     </div>
-  )
+  );
 }
 
-export default App
+export default App;
