@@ -8,35 +8,35 @@ export const projects = [
     {
         id: 1,
         title: 'VideoGames E-Commerce',
-        desc: 'E-Commerce videoludica, lavoro di gruppo. Sistema gestionale di videogames, da aggiungere al carrello e tantissimo altro.',
+        desc: 'Video game E-Commerce, group work. Management system for video games, add to cart and much more.',
         href: 'https://github.com/Alessio-Gasbarro/ecommerce_boolstop',
         image: project1
     },
     {
         id: 2,
         title: 'Javascript Clock',
-        desc: 'Orologio in tempo reale, con il design di una variabile JavaScript.',
+        desc: 'Real-time clock, designed with a JavaScript variable.',
         href: 'https://github.com/Alessio-Gasbarro/realTimeClock_react',
         image: project2
     },
     {
         id: 3,
         title: 'Nasa API',
-        desc: 'Applicazione che utilizza le API della NASA, mostra immagini giornaliere e informazioni di pianeti, asteroidi e altro.',
+        desc: 'Application that uses NASA APIs, shows daily images and information about planets, asteroids, and more.',
         href: 'https://github.com/Alessio-Gasbarro/nasa_api',
         image: project3
     },
     {
         id: 4,
         title: 'Pluvia24',
-        desc: 'Piattaforma meteo in tempo reale che utilizza le API di OpenWeather. Mostra le condizioni meteorologiche attuali di ben 20 Capitali.',
+        desc: 'Real-time weather platform that uses OpenWeather APIs. Shows current weather conditions of 20 Capitals.',
         href: 'https://github.com/Alessio-Gasbarro/weather-api',
         image: project4
     },
     {
         id: 5,
         title: 'Musicando',
-        desc: 'Applicazione per comparare strumenti e/o aggiungere strumenti ai preferiti. Ottimizzato con ricerca avanzata, debounce e LocalStorage.',
+        desc: 'Application to compare instruments and/or add instruments to favorites. Optimized with advanced search, debounce, and LocalStorage.',
         href: 'https://github.com/Alessio-Gasbarro/progetto-finale-spec-frontend-front',
         image: project5
     }

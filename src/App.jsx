@@ -1,42 +1,42 @@
-import './index.css';
-import bgVideo from './assets/background_video.mp4';
-import curriculum from './assets/curriculum_1.png';
-import master from './assets/master_2.png';
-import { projects } from './data/projects.js';
-import { useState, useCallback, useEffect } from 'react';
+import "./index.css";
+import bgVideo from "./assets/background_video.mp4";
+import curriculum from "./assets/curriculum_1.png";
+import master from "./assets/master_2.png";
+import { projects } from "./data/projects.js";
+import { useState, useCallback, useEffect } from "react";
 
 function App() {
-  const [lightbox, setLightbox] = useState({ open: false, src: '', alt: '' });
+  const [lightbox, setLightbox] = useState({ open: false, src: "", alt: "" });
 
   const openLightbox = useCallback((src, alt) => {
     setLightbox({ open: true, src, alt });
   }, []);
 
   const closeLightbox = useCallback(() => {
-    setLightbox({ open: false, src: '', alt: '' });
+    setLightbox({ open: false, src: "", alt: "" });
   }, []);
 
   useEffect(() => {
-    function onKey(e) {
-      if (e.key === 'Escape' && lightbox.open) closeLightbox();
-    }
-    window.addEventListener('keydown', onKey);
-    return () => window.removeEventListener('keydown', onKey);
+    const onKeyDown = (e) => {
+      if (e.key === "Escape" && lightbox.open) closeLightbox();
+    };
+    window.addEventListener("keydown", onKeyDown);
+    return () => window.removeEventListener("keydown", onKeyDown);
   }, [lightbox.open, closeLightbox]);
 
-  // Animated headline phrases
-  const phrases = ['nuove realtà', 'nuove idee', 'nuovi progetti', 'nuovi sogni'];
+  const phrases = ["new realities", "new ideas", "new projects", "new dreams"];
   const [idx, setIdx] = useState(0);
 
   useEffect(() => {
-    const t = setInterval(() => {
+    const timer = setInterval(() => {
       setIdx((i) => (i + 1) % phrases.length);
     }, 3000);
-    return () => clearInterval(t);
+    return () => clearInterval(timer);
   }, []);
 
   return (
     <div className="app">
+      {/* Background video */}
       <video
         className="bg-video"
         src={bgVideo}
@@ -47,16 +47,13 @@ function App() {
       />
 
       <div className="overlay">
-        {/* HERO - Prima Sezione */}
-        <section className="section" role="region" aria-labelledby="hero-title">
+        {/* HERO */}
+        <section className="section" aria-labelledby="hero-title">
           <div className="section-inner hero-content">
             <h1 id="hero-title" className="hero-title">
-              <span className="fixed-word">Costruendo</span>
-              <span className="animated-wrap" aria-hidden="false">
-                <span
-                  key={idx}
-                  className={`animated-phrase phrase-${idx}`}
-                >
+              <span className="fixed-word">Developing</span>
+              <span className="animated-wrap">
+                <span key={idx} className={`animated-phrase phrase-${idx}`}>
                   {phrases[idx]}
                 </span>
               </span>
@@ -64,77 +61,120 @@ function App() {
 
             <div className="blur">
               <p className="hero-desc">
-                Sono un ragazzo appassionato di 28 anni che risiede a Ludwigsburg, in Germania, con un fortissimo desiderio di conoscere nuove tecnologie e imparare sempre di più. Ho recentemente completato un corso intensivo di 6 mesi come Full-Stack Web Developer, dove ho acquisito le necessarie competenze per creare applicazioni web moderne ed efficienti sia in Front-end, sia in Back-end.
+                I'm a passionate 28-year-old living in Ludwigsburg, Germany, with a strong desire to learn new technologies and continue to improve. I recently completed an intensive 6-month course as a Full-Stack Web Developer, where I acquired the necessary skills to create modern and efficient web applications for both front-end and back-end.
               </p>
-              <p className='hero-desc'>
-                Italiano di madrelingua, sono fluente in inglese e tedesco a livello Niveau C1. Ma nel tempo libero mi piace spesso imparare il giapponese.
+              <p className="hero-desc">
+                A native Italian speaker, I'm fluent in English and German at level C1. In my spare time, I often enjoy learning Japanese.
               </p>
-              <p className='hero-desc'>
-                Essere curioso, appassionato e determinato fa di me la persona che sono oggi, oltre alla mia personale soddisfazione nel completare con successo ogni progetto.
+              <p className="hero-desc">
+                Being curious, passionate, and determined makes me the person I am today, in addition to my personal satisfaction in successfully completing every project.
               </p>
-            </div>
 
-            <div className="btn-group" role="navigation" aria-label="Azioni principali">
-              <a className="btn" href="#projects">Progetti</a>
-              <a className="btn" href="#skills">Competenze</a>
+              <nav className="btn-group" aria-label="Azioni principali">
+                <a className="btn" href="#projects">Projects</a>
+                <a className="btn" href="#skills">Skills</a>
+              </nav>
             </div>
           </div>
         </section>
 
-        {/* SKILLS - Seconda Sezione */}
-        <section id="skills" className="section" aria-labelledby="skills-title" role="region">
+        {/* SKILLS */}
+        <section id="skills" className="section" aria-labelledby="skills-title">
           <div className="section-inner skills-inner">
-            <h2 id="skills-title" className="skills-heading">Competenze</h2>
+            <h2 id="skills-title" className="skills-heading">Skills</h2>
 
-            <div className="skills-grid" role="list">
-              <div className="skills-column" role="listitem" aria-label="Front-end">
+            <div className="skills-grid">
+              {/* FRONTEND */}
+              <div className="skills-column" aria-label="Front-end">
                 <h3 className="skills-subheading">FRONT-END</h3>
                 <div className="skill-row">
-                  <img className="skill-icon" loading="lazy" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" alt="HTML5" width="80" height="80" />
-                  <img className="skill-icon" loading="lazy" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" alt="CSS3" width="80" height="80" />
-                  <img className="skill-icon" loading="lazy" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="JavaScript" width="80" height="80" />
-                  <img className="skill-icon" loading="lazy" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" alt="React" width="80" height="80" />
-                  <img className="skill-icon" loading="lazy" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg" alt="TypeScript" width="80" height="80" />
-                  <img className="skill-icon" loading="lazy" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/bootstrap/bootstrap-original.svg" alt="Bootstrap" width="80" height="80" />
+                  {[
+                    ["html5", "HTML5"],
+                    ["css3", "CSS3"],
+                    ["javascript", "JavaScript"],
+                    ["react", "React"],
+                    ["typescript", "TypeScript"],
+                    ["bootstrap", "Bootstrap"]
+                  ].map(([name, alt]) => (
+                    <img
+                      key={name}
+                      className="skill-icon"
+                      loading="lazy"
+                      src={`https://cdn.jsdelivr.net/gh/devicons/devicon/icons/${name}/${name}-original.svg`}
+                      alt={alt}
+                      width="80"
+                      height="80"
+                    />
+                  ))}
                 </div>
               </div>
 
-              <div className="skills-column" role="listitem" aria-label="Back-end">
+              {/* BACKEND */}
+              <div className="skills-column" aria-label="Back-end">
                 <h3 className="skills-subheading">BACKEND</h3>
                 <div className="skill-row">
-                  <img className="skill-icon" loading="lazy" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" alt="Node.js" width="80" height="80" />
-                  <img className="skill-icon" loading="lazy" src="https://skillicons.dev/icons?i=express" alt="Express.js" width="80" height="80" />
-                  <img className="skill-icon" loading="lazy" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" alt="MySQL" width="80" height="80" />
+                  <img
+                    className="skill-icon"
+                    loading="lazy"
+                    src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg"
+                    alt="Node.js"
+                    width="80"
+                    height="80"
+                  />
+                  <img
+                    className="skill-icon"
+                    loading="lazy"
+                    src="https://skillicons.dev/icons?i=express"
+                    alt="Express.js"
+                    width="80"
+                    height="80"
+                  />
+                  <img
+                    className="skill-icon"
+                    loading="lazy"
+                    src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg"
+                    alt="MySQL"
+                    width="80"
+                    height="80"
+                  />
                 </div>
               </div>
 
-              <div className="skills-column" role="listitem" aria-label="Altri strumenti">
-                <h3 className="skills-subheading">ALTRI TOOLS</h3>
+              {/* TOOLS */}
+              <div className="skills-column" aria-label="Other tools">
+                <h3 className="skills-subheading">OTHER TOOLS</h3>
                 <div className="skill-row">
-                  <img className="skill-icon" loading="lazy" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" alt="Git" width="80" height="80" />
-                  <img className="skill-icon" loading="lazy" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/jest/jest-plain.svg" alt="Jest" width="80" height="80" />
-                  <img className="skill-icon" loading="lazy" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postman/postman-original.svg" alt="Postman" width="80" height="80" />
-                  <img className="skill-icon" loading="lazy" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vite/vite-original.svg" alt="Vite" width="80" height="80" />
-                  <img className="skill-icon" loading="lazy" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/npm/npm-original-wordmark.svg" alt="NPM" width="80" height="80" />
+                  {[
+                    ["git", "Git"],
+                    ["jest", "Jest", "plain"],
+                    ["postman", "Postman"],
+                    ["vite", "Vite"],
+                    ["npm", "NPM", "original-wordmark"]
+                  ].map(([name, alt, variant = "original"]) => (
+                    <img
+                      key={name}
+                      className="skill-icon"
+                      loading="lazy"
+                      src={`https://cdn.jsdelivr.net/gh/devicons/devicon/icons/${name}/${name}-${variant}.svg`}
+                      alt={alt}
+                      width="80"
+                      height="80"
+                    />
+                  ))}
                 </div>
               </div>
             </div>
           </div>
         </section>
 
-        {/* PROGETTI - Terza Sezione */}
-        <section id="projects" className="section projects-section" aria-labelledby="projects-title" role="region">
+        {/* PROJECTS */}
+        <section id="projects" className="section projects-section" aria-labelledby="projects-title">
           <div className="section-inner">
-            <h2 id="projects-title" className="skills-heading">Progetti</h2>
+            <h2 id="projects-title" className="skills-heading">My Personal Projects</h2>
 
-            <div className="projects-grid" role="list">
-              {projects.map(p => (
-                <a
-                  key={p.id}
-                  className="project-card"
-                  href={p.href}
-                  aria-label={p.title}
-                >
+            <div className="projects-grid">
+              {projects.map((p) => (
+                <a key={p.id} className="project-card" href={p.href} aria-label={p.title}>
                   <div className="project-thumb">
                     <img src={p.image} alt={p.title} />
                   </div>
@@ -148,34 +188,32 @@ function App() {
           </div>
         </section>
 
-        {/* REFERENZE - Quarta Sezione */}
-        <section id="references" className="section" aria-labelledby="references-title" role="region">
+        {/* REFERENCES */}
+        <section id="references" className="section" aria-labelledby="references-title">
           <div className="section-inner">
-            <h2 id="references-title" className="skills-heading">Referenze</h2>
+            <h2 id="references-title" className="skills-heading">References</h2>
 
             <div className="ref-grid">
-              <button
-                type="button"
-                className="ref-card"
-                onClick={() => openLightbox(curriculum, 'Curriculum')}
-                aria-label="Apri Curriculum"
-              >
-                <img src={curriculum} alt="Curriculum" />
-              </button>
-
-              <button
-                type="button"
-                className="ref-card"
-                onClick={() => openLightbox(master, 'Master')}
-                aria-label="Apri Master"
-              >
-                <img src={master} alt="Master" />
-              </button>
+              {[
+                { src: curriculum, alt: "Curriculum" },
+                { src: master, alt: "Master" }
+              ].map(({ src, alt }) => (
+                <button
+                  key={alt}
+                  type="button"
+                  className="ref-card"
+                  onClick={() => openLightbox(src, alt)}
+                  aria-label={`Apri ${alt}`}
+                >
+                  <img src={src} alt={alt} />
+                </button>
+              ))}
             </div>
           </div>
         </section>
       </div>
 
+      {/* LIGHTBOX */}
       {lightbox.open && (
         <div
           className="lightbox"
@@ -184,8 +222,17 @@ function App() {
           aria-label={lightbox.alt}
           onClick={closeLightbox}
         >
-          <div className="lightbox-inner" onClick={(e) => e.stopPropagation()}>
-            <button className="lightbox-close" onClick={closeLightbox} aria-label="Chiudi">×</button>
+          <div
+            className="lightbox-inner"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <button
+              className="lightbox-close"
+              onClick={closeLightbox}
+              aria-label="Chiudi"
+            >
+              ×
+            </button>
             <img src={lightbox.src} alt={lightbox.alt} />
           </div>
         </div>
